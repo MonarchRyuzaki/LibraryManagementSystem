@@ -1,28 +1,24 @@
-import javax.swing.ImageIcon;
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JLayeredPane;
-import javax.swing.JTextField;
-
-import java.awt.event.*;
+import javax.swing.*;
 import java.awt.*;
+import java.awt.event.*;
 
-public class BookAdd extends Database implements ActionListener{
+public class IssueBooks extends Database implements ActionListener{
     
     JFrame frame = new JFrame("Add Book Info");
     JLabel bg;
     JLabel BookName;
     JLabel BookAuthor;
+    JLabel Name;
     JTextField EnterBookName;
     JTextField EnterBookAuthor;
+    JTextField EnterName;
     JButton submit;
     JLayeredPane layeredPane;
 
     ImageIcon image = new ImageIcon("addBooks.jpg");
 
 
-    BookAdd(){
+    IssueBooks(){
         bg = new JLabel();
         bg.setIcon(image);
         bg.setBounds(0,0,420,420);
@@ -56,8 +52,22 @@ public class BookAdd extends Database implements ActionListener{
         EnterBookAuthor.setBounds(200,150,180,30);
         EnterBookAuthor.setVisible(true);
 
+        Name = new JLabel("Your Name : ");
+        Name.setFont(new Font("Comic Sans",Font.BOLD,20));
+        Name.setForeground(Color.GREEN);
+        Name.setBounds(50,200,200,20);
+        Name.setVisible(true);
+    
+        EnterName = new JTextField();
+		EnterName.setFont(new Font("Comic Sans",Font.PLAIN,25));
+		EnterName.setForeground(Color.BLACK);
+		EnterName.setBackground(Color.WHITE);
+		EnterName.setCaretColor(Color.BLACK);
+        EnterName.setBounds(200,200,180,30);
+        EnterName.setVisible(true);
+
         submit = new JButton("Submit!");
-        submit.setBounds(150, 200, 150, 50);
+        submit.setBounds(150, 250, 150, 50);
         submit.setFocusable(false);
         submit.setVisible(true);
         submit.addActionListener(this);
@@ -70,6 +80,8 @@ public class BookAdd extends Database implements ActionListener{
         layeredPane.add(EnterBookName,Integer.valueOf(1));
         layeredPane.add(BookAuthor,Integer.valueOf(1));
         layeredPane.add(EnterBookAuthor,Integer.valueOf(1));
+        layeredPane.add(Name,Integer.valueOf(1));
+        layeredPane.add(EnterName,Integer.valueOf(1));
         layeredPane.add(submit,Integer.valueOf(1));
         layeredPane.setVisible(true);
 
@@ -81,14 +93,17 @@ public class BookAdd extends Database implements ActionListener{
         frame.setVisible(true);
     }
 
+
     @Override
     public void actionPerformed(ActionEvent e) {
         
         if (e.getSource() == submit){
-            frame.dispose();
-            String name = EnterBookName.getText();
+
+            String bookname = EnterBookName.getText();
             String author = EnterBookAuthor.getText();
-            Book.addBooks(name,author);
+            String myname = EnterName.getText();
+            Book.issueBooks(bookname,author,myname);
+            frame.dispose();
         }
         
     }

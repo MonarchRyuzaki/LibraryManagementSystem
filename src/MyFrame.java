@@ -36,15 +36,16 @@ public class MyFrame extends JFrame implements ActionListener{
         button2 = new JButton("Issue Books");
         button2.setBounds(250, 250, 150,100 );
         button2.setFocusable(false);
-        button3 = new JButton("Return Issued Books");
-        button3.setFocusable(false);
-        button3.setBounds(450, 250, 250,100 );
+        button2.addActionListener(this);
+        //button3 = new JButton("Return Issued Books");
+        //button3.setFocusable(false);
+        //button3.setBounds(450, 250, 250,100 );
         layeredPane = new JLayeredPane();
         layeredPane.setBounds(0,0,800,600);
         layeredPane.add(label,Integer.valueOf(0));
         layeredPane.add(button1 , Integer.valueOf(1));
         layeredPane.add(button2,Integer.valueOf(1));
-        layeredPane.add(button3,Integer.valueOf(1));
+        //layeredPane.add(button3,Integer.valueOf(1));
         layeredPane.setVisible(true);
 
         //JFrame - A GUI Window to add components to
@@ -64,6 +65,11 @@ public class MyFrame extends JFrame implements ActionListener{
         if (e.getSource()==button1){
 
             new BookAdd();
+        }
+
+        if (e.getSource() == button2){
+
+            new IssueBooks();
         }
         
     }
