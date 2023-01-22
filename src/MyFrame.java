@@ -1,8 +1,9 @@
 import java.awt.*;
-
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import javax.swing.*;
 
-public class MyFrame extends JFrame{ 
+public class MyFrame extends JFrame implements ActionListener{ 
 
     JLabel label;
     JLayeredPane layeredPane;
@@ -30,9 +31,13 @@ public class MyFrame extends JFrame{
 
         button1 = new JButton("Add Books");
         button1.setBounds(50, 250, 150, 100);
+        button1.setFocusable(false);
+        button1.addActionListener(this);
         button2 = new JButton("Issue Books");
         button2.setBounds(250, 250, 150,100 );
+        button2.setFocusable(false);
         button3 = new JButton("Return Issued Books");
+        button3.setFocusable(false);
         button3.setBounds(450, 250, 250,100 );
         layeredPane = new JLayeredPane();
         layeredPane.setBounds(0,0,800,600);
@@ -53,4 +58,15 @@ public class MyFrame extends JFrame{
         this.setIconImage(icon.getImage());//changes the icon of frame
         this.add(layeredPane);
     }
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        if (e.getSource()==button1){
+
+            new BookAdd();
+        }
+        
+    }
+
+
 }
